@@ -6,6 +6,10 @@ import (
 )
 
 func main() {
+	if len(os.Args) < 2 {
+		fmt.Println("? No argument supplied. Try enzo help to see a list of commands.")
+		return 
+	}
 	switch command := os.Args[1]; command {
 	case "new":
 		New()

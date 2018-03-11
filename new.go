@@ -15,20 +15,65 @@ var qs = []*survey.Question {
 		Name: "Type",
 		Prompt: &survey.Select{
 			Message: "Choose a Project Type:",
-			Options: []string{"SPA","Multi Page Applications","MVC", "Backend Only"},
+			Options: []string{ "SPA" , "Multi Page Applications" , "MVC" , "Backend Only" },
 		},
 	},
 }
 
 func typeOfProject() {
-	answers := struct {
+	answer := struct {
 			Type          string                  
 	}{}
 
-	err := survey.Ask(qs, &answers)
+	err := survey.Ask(qs, &answer)
 	if err != nil {
 			fmt.Println(err.Error())
 			return
 	}
-	fmt.Println(answers.Type)
+	switch answer.Type {
+	case "SPA":
+		spa()
+	case "Multi Page Applications":
+		multi()
+	case "MVC":
+		mvc()
+	case "Backend Only":
+		beOnly()
+	default: 
+		fmt.Println("No option selected?")
+	}
 }
+
+
+func spa() {
+	fe := chooseFE()
+	fmt.Println(fe)
+	if fe == "React" {
+		ReactSPA()
+	} else {
+		VueSPA()
+	}
+}
+
+func multi() {
+	fe := chooseFE()
+	fmt.Println(fe)
+}
+
+func mvc() {
+
+}
+
+func beOnly() {
+
+}
+
+func chooseFE() string {
+	fe  := ""
+	prompt := &survey.Select {
+			Message: "Use React or Vue:",
+			Options: []string{ "React", "Vue" },
+	}
+	survey.AskOne(prompt, &fe, nil)
+	return fe
+} 
