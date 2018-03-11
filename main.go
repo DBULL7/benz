@@ -2,7 +2,8 @@ package main
 
 import (
 	"os"
-	"fmt"	
+	"fmt"
+	"github.com/DBULL7/benz/new"
 )
 
 func main() {
@@ -12,7 +13,7 @@ func main() {
 	}
 	switch command := os.Args[1]; command {
 	case "new":
-		New()
+		new.New()
 	default:
 		fmt.Println("? Try enzo help to see a list of commands")		
 	}	
