@@ -36,9 +36,9 @@ func typeOfProject() {
 	case "Multi Page Applications":
 		multi()
 	case "MVC":
-		mvc()
+		MVC()
 	case "Backend Only":
-		beOnly()
+		BeOnly()
 	default: 
 		fmt.Println("No option selected?")
 	}
@@ -58,14 +58,6 @@ func spa() {
 func multi() {
 	fe := chooseFE()
 	fmt.Println(fe)
-}
-
-func mvc() {
-
-}
-
-func beOnly() {
-
 }
 
 func chooseFE() string {
