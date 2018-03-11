@@ -15,7 +15,7 @@ var qs = []*survey.Question {
 		Name: "Type",
 		Prompt: &survey.Select{
 			Message: "Choose a Project Type:",
-			Options: []string{ "SPA" , "Multi Page Applications" , "MVC" , "Backend Only" },
+			Options: []string{ "SPA" , "Multi Page Applications" , "MVC" , "API Backend" },
 		},
 	},
 }
@@ -37,7 +37,7 @@ func typeOfProject() {
 		multi()
 	case "MVC":
 		MVC()
-	case "Backend Only":
+	case "API Backend":
 		BeOnly()
 	default: 
 		fmt.Println("No option selected?")
