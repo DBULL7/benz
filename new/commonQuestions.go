@@ -1,4 +1,4 @@
-package main
+package new
 
 import (
 	"gopkg.in/AlecAivazis/survey.v1"
