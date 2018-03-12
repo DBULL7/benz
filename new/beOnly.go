@@ -1,8 +1,10 @@
 package new
 
 import (
-	// "fmt"
+	"fmt"
 	// "io"
+	"log"
+	"os"
 )
 
 
@@ -22,7 +24,16 @@ func BeOnly() {
 }
 
 func create(name, database, testing string) {
-	CreateFile("./new/files/server.txt", name + "/server.go")
+	path := name
+	fmt.Println(path)
+	err := os.MkdirAll(path, 0700)
+
+	if err != nil {
+		log.Println("Error creating directory")
+		log.Println(err)
+		return
+	}
+	CreateFile("../files/server.text", name+"/server.go")
 
 }
 
