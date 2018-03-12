@@ -1,0 +1,19 @@
+package main 
+
+import (
+  "github.com/gin-gonic/gin"
+)
+
+var app *gin.Engine
+
+
+func main() {
+	app = gin.Default()
+
+	app.LoadHTMLGlob("templates/*")
+
+	initializeRoutes()
+	
+	app.Run(":3000")
+}
+

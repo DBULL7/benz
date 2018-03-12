@@ -1,8 +1,10 @@
 package new
 
 import (
-	"fmt"
+	// "fmt"
+	// "io"
 )
+
 
 // BeOnly entry point.
 func BeOnly() {
@@ -11,11 +13,19 @@ func BeOnly() {
 	serverTesting := ServerTesting()
 	
 	if name != "" && database != "" && serverTesting != "" {
-		// run func
-		fmt.Println("I fired") 
+		create(name, database, serverTesting)
 	} else {
 		return 
 	}
 	// use text template for importing different databases this will increase flexiblity as a whole 
 	// will need to go get packages 
+}
+
+func create(name, database, testing string) {
+	CreateFile("./new/files/server.txt", name + "/server.go")
+
+}
+
+func goGet(projects string) {
+
 }
