@@ -35,3 +35,14 @@ func ServerTesting() string {
 	survey.AskOne(prompt, &serverTesting, nil)
 	return serverTesting
 }
+
+// BackendServer choose type of backend server 
+func BackendServer() string {
+	server := ""
+	prompt := &survey.Select{
+			Message: "Choose a Server:",
+			Options: []string{ "HTTP Router", "Gin", "Echo", "Gorilla mux", "Go standard library", "Fast Http" },
+	}
+	survey.AskOne(prompt, &server, nil)
+	return server
+}

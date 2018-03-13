@@ -10,9 +10,7 @@ var app *gin.Engine
 func main() {
 	app = gin.Default()
 
-	app.LoadHTMLGlob("templates/*")
-
-	initializeRoutes()
+	InitializeRoutes()
 	
 	app.Run(":3000")
 }
