@@ -1,9 +1,15 @@
 package main
 
+import (
+	"os"
+)
 
 func main() {
 	
 	app := InitializeRoutes()
-
-	app.Logger.Fatal(app.Start(":3000"))
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
+	app.Logger.Fatal(app.Start(":" + port))
 }

@@ -30,6 +30,7 @@ func typeOfProject() {
 			fmt.Println(err.Error())
 			return
 	}
+	name := GetName()
 	switch answer.Type {
 	case "SPA":
 		spa()
@@ -38,7 +39,7 @@ func typeOfProject() {
 	case "MVC":
 		MVC()
 	case "API Backend":
-		BeOnly()
+		BeOnly(name)
 	default: 
 		fmt.Println("No option selected?")
 	}
