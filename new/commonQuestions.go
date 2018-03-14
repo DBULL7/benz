@@ -28,7 +28,7 @@ func Database() string {
 // ServerTesting returns user selection of server testing tools 
 func ServerTesting() string {
 	serverTesting := ""
-	prompt := &survey.Select{
+	prompt := &survey.Select {
 			Message: "Choose a Testing Framework:",
 			Options: []string{"Go Standard Library", "Testify", "Go Convey", "None"},
 	}
@@ -39,9 +39,9 @@ func ServerTesting() string {
 // BackendServer choose type of backend server 
 func BackendServer() string {
 	server := ""
-	prompt := &survey.Select{
-			Message: "Choose a Server:",
-			Options: []string{ "HTTP Router", "Gin", "Echo", "Gorilla mux", "Go standard library", "Fast Http" },
+	prompt := &survey.Select {
+			Message: "Choose a Server: ",
+			Options: []string{ "Gin (recommended)", "Echo", "Chi", "Gorilla mux", "HTTP Router" },
 	}
 	survey.AskOne(prompt, &server, nil)
 	return server

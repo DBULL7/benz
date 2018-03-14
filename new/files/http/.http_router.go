@@ -1,16 +1,20 @@
 package main
 
 import (
-    "github.com/julienschmidt/httprouter"
     "net/http"
     "log"
+    "os"
 )
 
 
 func main() {
-    app := httprouter.New()
+    app := InitializeRoutes()
+    
 
-		InitializeRoutes()
+	port := os.Getenv("PORT")
+	if port == "" {
+        port = "3000"
+	}
 
-    log.Fatal(http.ListenAndServe(":3000", app))
+    log.Fatal(http.ListenAndServe(":" + port, app))
 }

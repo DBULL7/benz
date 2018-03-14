@@ -1,6 +1,7 @@
-package main 
+package main
 
 import (
+	"net/http"
 	"os"
 )
 
@@ -10,7 +11,5 @@ func main() {
 	if port == "" {
 		port = "3000"
 	}
-	
-	app.Run(":" + port)
+	http.ListenAndServe(":" + port, app)
 }
-
