@@ -5,6 +5,6 @@ import (
 )
 
 // VueSPA single page app entry point.
-func VueSPA() {
+func VueSPA(name string) {
 	fmt.Println("Vue SPA")
 }
