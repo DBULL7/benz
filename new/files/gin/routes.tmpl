@@ -8,6 +8,6 @@ import (
 // InitializeRoutes contains all routes for the application 
 func InitializeRoutes() *gin.Engine {
 	r := gin.Default()
-	r.GET("/", HelloWorld)
+	r.GET("/", c.HelloWorld)
 	return r 
 }
