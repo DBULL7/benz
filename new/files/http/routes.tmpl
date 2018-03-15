@@ -2,11 +2,12 @@ package main
 
 import (
     "github.com/julienschmidt/httprouter"
+	c "{{ .Path }}"
 )
 
 // InitializeRoutes contains all routes for the application
 func InitializeRoutes() *httprouter.Router {
-		r := httprouter.New()
-		
-		return r 
+	r := httprouter.New()
+	r.GET("/", c.Hello)	
+	return r 
 }
