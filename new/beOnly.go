@@ -116,7 +116,7 @@ func importControllerPath(templatePath, createFilePath, folderPath string) {
 	}
 
 	tmpl, _ := template.ParseFiles(path.Join(filename, templatePath))
-	path := GetPath() + "/" + folderPath
+	path := GetPath(folderPath)
 	route := Route{
 		Path: path,
 	}

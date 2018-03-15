@@ -49,16 +49,16 @@ func Mkdir(name string) {
 }
 
 // GetPath returns users github.com/user/ path
-func GetPath() string {
+func GetPath(projectPath string) string {
   dir, err := os.Getwd()
 	if err != nil {
 		log.Fatal(err)
 	}
 	path := ""
 	if strings.Contains(dir, "github.com") {
-		path = strings.Split(dir, "src/")[1]	
+		path = strings.Split(dir, "src/")[1] + "/" + projectPath
 	} else {
-		path = os.Getenv("GOPATH")
+		path = projectPath 
 	}
 	return path
 }
