@@ -2,11 +2,12 @@ package main
 
 import (
 	"github.com/go-chi/chi"	
+	c "{{ .Path }}"
 )
 
 // InitializeRoutes contains all routes for the application
 func InitializeRoutes() *chi.Mux {
 	r := chi.NewRouter()
-	
+	r.Get("/", c.Hello)	
 	return r 
 }
