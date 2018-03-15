@@ -1,9 +1,12 @@
 package new
 
 import (
+	"path"
+	"fmt"
 	"text/template"
 	"os"
 	"log"
+	"runtime"
 )
 
 // BeOnly entry point.
@@ -68,7 +71,9 @@ func http(name, beType string) {
 
 func gin(name, beType string) {
 	CreateFile("../files/gin/.gin.go", name + "/server/server.go")
-	CreateFile("../files/gin/.routes.go", name + "/server/routes.go")
+	// CreateFile("../files/gin/.routes.go", name + "/server/routes.go")
+	importControllerPath("../files/gin/routes.tmpl", name + "/server/routes.go")
+	
 	if beType == "html" {
 
 	} else {
@@ -106,16 +111,22 @@ type Route struct {
 }
 
 func importControllerPath(templatePath, createFilePath string) {
-	tmpl, _ := template.ParseFiles(templatePath)
+	_, filename, _, ok := runtime.Caller(0)
+	if !ok {
+			panic("No caller information")
+	}
+
+	tmpl, _ := template.ParseFiles(path.Join(filename, templatePath))
 	path := GetPath()
 	route := Route{
 		Path: path,
 	}
+	fmt.Println(route, tmpl)
 	file, err := os.Create(createFilePath)
 	if err != nil {
 		log.Println("Create file: ", err)
 	}
-	
+
 	error := tmpl.Execute(file, route)
 	if error != nil {
 		log.Fatalf("template execution: %s", error)
