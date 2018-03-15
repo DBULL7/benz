@@ -46,3 +46,34 @@ func BackendServer() string {
 	survey.AskOne(prompt, &server, nil)
 	return server
 }
+
+// ReactTesting choose if you want to test your react files
+func ReactTesting() bool {
+	testing := false
+	prompt := &survey.Confirm {
+		Message: "Do you want to use Enzyme and Jest to test your React components",
+	}
+	survey.AskOne(prompt, &testing, nil)
+	return testing 
+}
+
+// E2e select a Javascript e2e testing framework
+func E2e() string {
+	tool := ""
+	prompt := &survey.Select {
+		Message: "e2e Javascript Testing Framework",
+		Options: []string{ "Cypress", "Test Cafe", "None" },
+	}
+	survey.AskOne(prompt, &tool, nil)
+	return tool
+}
+
+// Backend asks user if they need backend 
+func Backend() bool {
+	backend := false 
+	prompt := &survey.Confirm {
+		Message: "Do need a backend",
+	}
+	survey.AskOne(prompt, &backend, nil)
+	return backend
+}

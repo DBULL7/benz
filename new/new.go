@@ -33,26 +33,25 @@ func typeOfProject() {
 	name := GetName()
 	switch answer.Type {
 	case "SPA":
-		spa()
+		spa(name)
 	case "Multi Page Applications":
 		multi()
 	case "MVC":
 		MVC()
 	case "API Backend":
-		BeOnly(name)
+		BeOnly(name, "api")
 	default: 
 		fmt.Println("No option selected?")
 	}
 }
 
 
-func spa() {
+func spa(name string) {
 	fe := chooseFE()
-	fmt.Println(fe)
 	if fe == "React" {
-		ReactSPA()
+		ReactSPA(name)
 	} else {
-		VueSPA()
+		VueSPA(name)
 	}
 }
 

@@ -9,6 +9,7 @@ import (
 	"path"
 	"log"
 	"runtime"
+	"strings"
 	"github.com/spf13/afero"	
 )
 
@@ -45,5 +46,20 @@ func Mkdir(name string) {
 		log.Println(err)
 		os.Exit(1)
 	}
+}
+
+// GetPath returns users github.com/user/ path
+func GetPath(projectPath string) string {
+  dir, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+	path := ""
+	if strings.Contains(dir, "github.com") {
+		path = strings.Split(dir, "src/")[1] + "/" + projectPath
+	} else {
+		path = projectPath 
+	}
+	return path
 }
 	

@@ -1,11 +1,13 @@
 package main 
 
 import (
-  "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
+	 c "{{ .Path }}"
 )
 
 // InitializeRoutes contains all routes for the application 
 func InitializeRoutes() *gin.Engine {
 	r := gin.Default()
+	r.GET("/", c.HelloWorld)
 	return r 
 }
