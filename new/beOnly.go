@@ -59,8 +59,12 @@ func createServer(name, server, beType string) {
 
 func chi(name, beType string) {
 	CreateFile("../files/chi/.chi.go", name + "/server/server.go")
-	CreateFile("../files/chi/.routes.go", name + "/routes.go")
+	importControllerPath("../files/chi/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
+	if beType == "html" {
 
+	} else {
+		CreateFile("../files/chi/.jsonController.go", name + "/server/controllers/hello.go")
+	}
 }
 
 func http(name, beType string) {
