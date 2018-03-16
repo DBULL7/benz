@@ -70,11 +70,12 @@ func chi(name, beType string) {
 
 func http(name, beType string) {
 	CreateFile("../files/http/.http_router.go", name + "/server/server.go")
-	ImportControllerPath("../files/http/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 	if beType == "html" {
-
+		CreateFile("../files/http/.htmlController.go", name + "/server/controllers/hello.go")
+		ImportControllerPath("../files/http/htmlRoutes.tmpl", name + "/server/routes.go", name + "/server/controllers")		
 	} else {
 		CreateFile("../files/http/.jsonController.go", name + "/server/controllers/hello.go")
+		ImportControllerPath("../files/http/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 	}
 }
 

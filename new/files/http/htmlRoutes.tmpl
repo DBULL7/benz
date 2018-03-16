@@ -1,0 +1,15 @@
+package main 
+
+import (
+  "net/http"
+  "github.com/julienschmidt/httprouter"
+	c "{{ .Path }}"
+)
+
+// InitializeRoutes contains all routes for the application
+func InitializeRoutes() *httprouter.Router {
+	r := httprouter.New()
+	r.GET("/", c.Hello)	
+  r.ServeFiles("/dist/*filepath", http.Dir("../dist"))
+	return r 
+}
