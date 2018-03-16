@@ -59,17 +59,18 @@ func createServer(name, server, beType string) {
 
 func chi(name, beType string) {
 	CreateFile("../files/chi/.chi.go", name + "/server/server.go")
-	importControllerPath("../files/chi/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 	if beType == "html" {
-
+		CreateFile("../files/chi/.htmlController.go", name + "/server/controllers/hello.go")
+		ImportControllerPath("../files/chi/htmlRoutes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 	} else {
 		CreateFile("../files/chi/.jsonController.go", name + "/server/controllers/hello.go")
+		ImportControllerPath("../files/chi/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 	}
 }
 
 func http(name, beType string) {
 	CreateFile("../files/http/.http_router.go", name + "/server/server.go")
-	importControllerPath("../files/http/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
+	ImportControllerPath("../files/http/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 	if beType == "html" {
 
 	} else {
@@ -81,9 +82,9 @@ func gin(name, beType string) {
 	CreateFile("../files/gin/.gin.go", name + "/server/server.go")
 	// CreateFile("../files/gin/.routes.go", name + "/server/routes.go")
 	if beType == "html" {
-		importControllerPath("../files/gin/htmlRoutes.tmpl", name + "/server/routes.go", name + "/server/controllers")
+		ImportControllerPath("../files/gin/htmlRoutes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 	} else {
-		importControllerPath("../files/gin/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
+		ImportControllerPath("../files/gin/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 		CreateFile("../files/gin/.jsonController.go", name + "/server/controllers/hello.go")
 	}
 }
@@ -91,10 +92,10 @@ func gin(name, beType string) {
 func echo(name, beType string) {
 	CreateFile("../files/echo/.echo.go", name + "/server/server.go")
 	if beType == "html" {
-		importControllerPath("../files/echo/htmlRoutes.tmpl", name + "/server/routes.go", name + "/server/controllers")	
+		ImportControllerPath("../files/echo/htmlRoutes.tmpl", name + "/server/routes.go", name + "/server/controllers")	
 	} else {
 		CreateFile("../files/echo/.jsonController.go", name + "/server/controllers/hello.go")
-		importControllerPath("../files/echo/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
+		ImportControllerPath("../files/echo/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 	}
 }
 
@@ -102,11 +103,11 @@ func gorilla(name, beType string) {
 	CreateFile("../files/gorilla/.gorilla.go", name + "/server/server.go")
 	if beType == "html" {
 		// html controller
-		importControllerPath("../files/gorilla/htmlRoutes.tmpl", name + "/server/routes.go", name + "/server/controllers")
+		ImportControllerPath("../files/gorilla/htmlRoutes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 		CreateFile("../files/gorilla/.htmlController.go", name + "/server/controllers/hello.go")
 	} else {
 		// json controller 
-		importControllerPath("../files/gorilla/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
+		ImportControllerPath("../files/gorilla/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 		CreateFile("../files/gorilla/.jsonController.go", name + "/server/controllers/hello.go")
 	}
 }
@@ -125,7 +126,8 @@ type Route struct {
 	Path string 
 }
 
-func importControllerPath(templatePath, createFilePath, folderPath string) {
+// ImportControllerPath takes path to a local template file, the path of where to create the new file, and the package path for within the template to connect subpackages
+func ImportControllerPath(templatePath, createFilePath, folderPath string) {
 	_, filename, _, ok := runtime.Caller(0)
 	if !ok {
 			panic("No caller information")
