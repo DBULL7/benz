@@ -11,6 +11,8 @@ import (
 	"runtime"
 	"strings"
 	"github.com/spf13/afero"	
+	"os/exec"
+	"fmt"
 )
 
 
@@ -61,5 +63,16 @@ func GetPath(projectPath string) string {
 		path = projectPath 
 	}
 	return path
+}
+
+// InstallJS npm packages
+func InstallJS(packages []string, projectDir string) {
+	command := exec.Command("yarn", packages...)
+	command.Dir = "./" + projectDir
+	output, err := command.Output()
+	if err != nil {
+			log.Println(err)
+	}
+	fmt.Printf("%s", output)
 }
 	

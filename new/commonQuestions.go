@@ -47,16 +47,6 @@ func BackendServer() string {
 	return server
 }
 
-// ReactTesting choose if you want to test your react files
-func ReactTesting() bool {
-	testing := false
-	prompt := &survey.Confirm {
-		Message: "Do you want to use Enzyme and Jest to test your React components",
-	}
-	survey.AskOne(prompt, &testing, nil)
-	return testing 
-}
-
 // E2e select a Javascript e2e testing framework
 func E2e() string {
 	tool := ""
@@ -72,7 +62,7 @@ func E2e() string {
 func Backend() bool {
 	backend := false 
 	prompt := &survey.Confirm {
-		Message: "Do need a backend",
+		Message: "Do you need a backend",
 	}
 	survey.AskOne(prompt, &backend, nil)
 	return backend

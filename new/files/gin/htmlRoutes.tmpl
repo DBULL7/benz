@@ -1,0 +1,15 @@
+package main 
+
+import (
+	"github.com/gin-gonic/gin"
+  "net/http"
+	 // c "{{ .Path }}"
+)
+
+// InitializeRoutes contains all routes for the application 
+func InitializeRoutes() *gin.Engine {
+	r := gin.Default()
+	r.StaticFS("/dist", http.Dir("../dist"))
+	r.StaticFile("/", "../dist/index.html")
+	return r 
+}
