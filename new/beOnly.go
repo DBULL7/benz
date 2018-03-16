@@ -100,11 +100,13 @@ func echo(name, beType string) {
 
 func gorilla(name, beType string) {
 	CreateFile("../files/gorilla/.gorilla.go", name + "/server/server.go")
-	importControllerPath("../files/gorilla/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 	if beType == "html" {
 		// html controller
+		importControllerPath("../files/gorilla/htmlRoutes.tmpl", name + "/server/routes.go", name + "/server/controllers")
+		CreateFile("../files/gorilla/.htmlController.go", name + "/server/controllers/hello.go")
 	} else {
 		// json controller 
+		importControllerPath("../files/gorilla/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 		CreateFile("../files/gorilla/.jsonController.go", name + "/server/controllers/hello.go")
 	}
 }

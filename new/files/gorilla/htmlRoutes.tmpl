@@ -1,0 +1,15 @@
+package main
+
+import (
+	"github.com/gorilla/mux"
+  "net/http"
+	c "{{ .Path }}"
+)
+
+// InitializeRoutes contains the application routes
+func InitializeRoutes() *mux.Router {
+	r := mux.NewRouter()
+	r.HandleFunc("/", c.Hello)
+	r.PathPrefix("/dist/").Handler(http.StripPrefix("/dist/", http.FileServer(http.Dir("../dist"))))
+	return r
+}
