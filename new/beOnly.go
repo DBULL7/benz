@@ -90,11 +90,11 @@ func gin(name, beType string) {
 
 func echo(name, beType string) {
 	CreateFile("../files/echo/.echo.go", name + "/server/server.go")
-	importControllerPath("../files/echo/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 	if beType == "html" {
-
+		importControllerPath("../files/echo/htmlRoutes.tmpl", name + "/server/routes.go", name + "/server/controllers")	
 	} else {
 		CreateFile("../files/echo/.jsonController.go", name + "/server/controllers/hello.go")
+		importControllerPath("../files/echo/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 	}
 }
 
