@@ -80,11 +80,10 @@ func http(name, beType string) {
 func gin(name, beType string) {
 	CreateFile("../files/gin/.gin.go", name + "/server/server.go")
 	// CreateFile("../files/gin/.routes.go", name + "/server/routes.go")
-	importControllerPath("../files/gin/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
-	
 	if beType == "html" {
-
+		importControllerPath("../files/gin/htmlRoutes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 	} else {
+		importControllerPath("../files/gin/routes.tmpl", name + "/server/routes.go", name + "/server/controllers")
 		CreateFile("../files/gin/.jsonController.go", name + "/server/controllers/hello.go")
 	}
 }

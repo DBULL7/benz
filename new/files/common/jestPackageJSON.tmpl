@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "scripts": {
+    "build": "webpack --watch",
+    "prod": "webpack --config webpack.prod.js",
+    "react": "node enzo/react.js",
+    "test": "jest"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "<rootDir>/test/e2e/",
+      "<rootDir>/cypress/",
+      "<rootDir>/test/server/"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
+  }
+}
