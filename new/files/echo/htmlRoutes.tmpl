@@ -1,0 +1,14 @@
+package main 
+
+import (
+	"github.com/labstack/echo"
+	// c "{{ .Path }}"
+)
+
+// InitializeRoutes contains all application routes 
+func InitializeRoutes() *echo.Echo {
+	r := echo.New()
+	r.File("/", "../dist/index.html")
+  r.Static("/dist", "../dist")
+  return r 	
+}
