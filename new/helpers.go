@@ -121,3 +121,12 @@ func AddScriptToPackageJSON(scriptKey, scriptValue, projectName string) {
 	}	
 }
 
+// WebpackDevServer accepts backend boolean and the name of the project.
+// If the user doesn't want a backend it creates a webpack development server and adds a start command to the package.json. 
+func WebpackDevServer(backend bool, name string) {
+	if backend == false {
+		AddScriptToPackageJSON("start", "webpack-dev-server --output-public-path=/dist/ --content-base dist/ --inline --hot --open --port 3000 --mode development", name) 
+		devServer := []string{"add", "webpack-dev-server", "--dev"}
+		InstallJS(devServer, name)
+	} 
+}
