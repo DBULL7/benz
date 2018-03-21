@@ -120,3 +120,4 @@ func AddScriptToPackageJSON(scriptKey, scriptValue, projectName string) {
 		fmt.Println(error)
 	}	
 }
+
