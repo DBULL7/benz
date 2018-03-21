@@ -11,6 +11,7 @@ import (
 	"runtime"
 	"strings"
 	"github.com/spf13/afero"	
+	"github.com/Jeffail/gabs"
 	"os/exec"
 	"fmt"
 )
@@ -94,6 +95,7 @@ func cypress(name string) {
 	CreateFile("../files/test/e2e/cypress.js", name + "/cypress/integration/test.js")
 	packages := []string{"add", "cypress", "--dev"}
 	InstallJS(packages, name)
+	AddScriptToPackageJSON("e2e", "cypress open", name)
 }
 
 func testcafe(name string) {
@@ -102,4 +104,19 @@ func testcafe(name string) {
 	CreateFile("../files/test/e2e/testcafe.js", name + "/test/e2e/test.js")
 	packages := []string{"add", "testcafe", "--dev"}
 	InstallJS(packages, name)
+	AddScriptToPackageJSON("e2e", "testcafe chrome test/e2e", name)
+}
+
+// AddScriptToPackageJSON Creates a new script in a package.json file.
+// Accepts the script key (ie "test") with it's corresponding value and the project name.
+func AddScriptToPackageJSON(scriptKey, scriptValue, projectName string) {
+	json, _ := gabs.ParseJSONFile(projectName + "/package.json")
+	json.SetP(scriptValue, "scripts."+ scriptKey)
+
+	jsonOutput := json.StringIndent("", "  ")
+	appFS := afero.NewOsFs()
+	error := afero.WriteFile(appFS, projectName + "/package.json", []byte(jsonOutput), 0644)
+	if error != nil {
+		fmt.Println(error)
+	}	
 }

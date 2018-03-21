@@ -7,24 +7,24 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loaders: "babel-loader",
+        use: "babel-loader",
         exclude: /node_modules/
       },
       {
         test: /\.jsx$/,
-        loaders: "babel-loader",
+        use: "babel-loader",
         exclude: /node_modules/
       },
       {
         test: /\.css$/,
-        loaders: "style-loader!css-loader!postcss-loader"
+        use: ['style-loader', 'postcss-loader']
       },
       {
         test: /\.scss$/,
-        use: "style-loader!css-loader!sass-loader!postcss-loader"
+        use: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader']
       }
     ]
   },

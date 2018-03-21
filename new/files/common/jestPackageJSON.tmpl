@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
   "scripts": {
-    "build": "webpack --watch",
-    "prod": "webpack --config webpack.prod.js",
+    "build": "webpack --watch --mode development",
+    "prod": "webpack --config webpack.prod.js --mode production",
     "react": "node enzo/react.js",
     "test": "jest"
   },
