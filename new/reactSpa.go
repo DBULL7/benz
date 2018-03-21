@@ -1,12 +1,8 @@
 package new
 
-import (
-	// "fmt"
-)
-
 // ReactSPA entry point for building create-react-app style applications
 func ReactSPA(name string) {
-	e2e := E2e()
+	e2e 		:= E2e()
 	backend := Backend()
 	if backend == true {
 		BeOnly(name, "html")
@@ -20,14 +16,8 @@ func ReactSPA(name string) {
 	CreateFile("../files/common/reactBabel", name + "/.babelrc")
 	CreateFile("../files/common/jestPackageJSON.tmpl", name + "/package.json")
 	// after package.json created add the start command for non-backend projects
-	if backend == false {
-		AddScriptToPackageJSON("start", "webpack-dev-server --output-public-path=/dist/ --content-base dist/ --inline --hot --open --port 3000 --mode development", name) 
-		devServer := []string{"add", "webpack-dev-server", "--dev"}
-		InstallJS(devServer, name)
-	} 
-	deps := []string{"add", "react", "react-dom"}
-	InstallJS(deps, name)
-	devdeps := []string{"add","webpack", "webpack-cli", "babel-preset-env","babel-loader","babel-core","babel-preset-react","css-loader","style-loader","sass-loader","postcss-loader","postcss-import","postcss-cssnext","cssnano", "jest","enzyme","enzyme-adapter-react-16", "identity-obj-proxy","node-sass", "--dev"}
+	WebpackDevServer(backend, name)
+	devdeps := []string{"add","react", "react-dom", "webpack", "webpack-cli", "babel-preset-env","babel-loader","babel-core","babel-preset-react","css-loader","style-loader","sass-loader","postcss-loader","postcss-import","postcss-cssnext","cssnano", "jest","enzyme","enzyme-adapter-react-16", "identity-obj-proxy","node-sass", "--dev"}
 	InstallJS(devdeps, name)
 	CreateFile("../files/frontend/react/reactIndex.js", name + "/src/index.js")
 	CreateFile("../files/frontend/react/reactApp.js", name + "/src/App/App.js")
@@ -41,4 +31,5 @@ func ReactSPA(name string) {
 	// create e2e testing
 	InstallE2E(e2e, name)
 }
+
 
