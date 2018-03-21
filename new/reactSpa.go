@@ -1,9 +1,5 @@
 package new
 
-import (
-	// "fmt"
-)
-
 // ReactSPA entry point for building create-react-app style applications
 func ReactSPA(name string) {
 	e2e := E2e()
@@ -25,9 +21,7 @@ func ReactSPA(name string) {
 		devServer := []string{"add", "webpack-dev-server", "--dev"}
 		InstallJS(devServer, name)
 	} 
-	deps := []string{"add", "react", "react-dom"}
-	InstallJS(deps, name)
-	devdeps := []string{"add","webpack", "webpack-cli", "babel-preset-env","babel-loader","babel-core","babel-preset-react","css-loader","style-loader","sass-loader","postcss-loader","postcss-import","postcss-cssnext","cssnano", "jest","enzyme","enzyme-adapter-react-16", "identity-obj-proxy","node-sass", "--dev"}
+	devdeps := []string{"add","react", "react-dom", "webpack", "webpack-cli", "babel-preset-env","babel-loader","babel-core","babel-preset-react","css-loader","style-loader","sass-loader","postcss-loader","postcss-import","postcss-cssnext","cssnano", "jest","enzyme","enzyme-adapter-react-16", "identity-obj-proxy","node-sass", "--dev"}
 	InstallJS(devdeps, name)
 	CreateFile("../files/frontend/react/reactIndex.js", name + "/src/index.js")
 	CreateFile("../files/frontend/react/reactApp.js", name + "/src/App/App.js")
