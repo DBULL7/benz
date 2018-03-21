@@ -66,6 +66,7 @@ func GetPath(projectPath string) string {
 }
 
 // InstallJS npm packages
+// requires array of strings. Requires directory to install packages into.
 func InstallJS(packages []string, projectDir string) {
 	command := exec.Command("yarn", packages...)
 	command.Dir = "./" + projectDir
@@ -75,4 +76,30 @@ func InstallJS(packages []string, projectDir string) {
 	}
 	fmt.Printf("%s", output)
 }
-	
+
+// InstallE2E installs end to end testing for applications. 
+// Takes the string e2e for determining which testing system to use.
+// Takes string name which is the name of the project for creating files.
+func InstallE2E(e2e, name string) {
+	if e2e == "Cypress" {
+		cypress(name)
+	} else if e2e == "Test Cafe" {
+		testcafe(name)
+	}
+}
+
+func cypress(name string) {
+	Mkdir(name + "/cypress")
+	Mkdir(name + "/cypress/integration")
+	CreateFile("../files/test/e2e/cypress.js", name + "/cypress/integration/test.js")
+	packages := []string{"add", "cypress", "--dev"}
+	InstallJS(packages, name)
+}
+
+func testcafe(name string) {
+	Mkdir(name + "/test")
+	Mkdir(name + "/test/e2e")
+	CreateFile("../files/test/e2e/testcafe.js", name + "/test/e2e/test.js")
+	packages := []string{"add", "testcafe", "--dev"}
+	InstallJS(packages, name)
+}

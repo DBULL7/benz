@@ -14,7 +14,6 @@ func ReactSPA(name string) {
 		// package json needs to have command for webpack dev server with hot reload 
 	}
 
-	installE2E(e2e)
 	Mkdir(name + "/src")
 	Mkdir(name + "/src/App")
 	Mkdir(name + "/dist")
@@ -31,16 +30,11 @@ func ReactSPA(name string) {
 	CreateFile("../files/frontend/react/reactCSS.css", name + "/src/App/App.css")
 	CreateFile("../files/webpack/react.js", name + "/webpack.config.js")
 	// webpack.prod.js
-	// postcss.config.js
 	CreateFile("../files/frontend/react/postcss.config.js", name + "/postcss.config.js")
 	CreateFile("../files/frontend/react/App.spec.js", name + "/src/App/App.spec.js")
 	CreateFile("../files/frontend/react/index.html", name + "/dist/index.html")
+
+	// create e2e testing
+	InstallE2E(e2e, name)
 }
 
-func installE2E(e2e string) {
-	if e2e == "Cypress" {
-
-	} else if e2e == "Test Cafe" {
-
-	}
-}
