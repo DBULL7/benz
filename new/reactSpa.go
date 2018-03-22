@@ -23,7 +23,6 @@ func ReactSPA(name string) {
 	CreateFile("../files/frontend/react/reactApp.js", name + "/src/App/App.js")
 	CreateFile("../files/frontend/react/reactCSS.css", name + "/src/App/App.css")
 	CreateFile("../files/webpack/react.js", name + "/webpack.config.js")
-	// webpack.prod.js
 	CreateFile("../files/frontend/react/postcss.config.js", name + "/postcss.config.js")
 	CreateFile("../files/frontend/react/App.spec.js", name + "/src/App/App.spec.js")
 	CreateFile("../files/frontend/react/index.html", name + "/dist/index.html")
