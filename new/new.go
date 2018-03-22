@@ -35,7 +35,7 @@ func typeOfProject() {
 	case "SPA":
 		spa(name)
 	case "Multi Page Applications":
-		multi()
+		multi(name)
 	case "MVC":
 		MVC()
 	case "API Backend":
@@ -55,9 +55,13 @@ func spa(name string) {
 	}
 }
 
-func multi() {
+func multi(name string) {
 	fe := chooseFE()
-	fmt.Println(fe)
+	if fe == "React" {
+		// Redux
+	} else {
+		Vuex(name)
+	}
 }
 
 func chooseFE() string {
