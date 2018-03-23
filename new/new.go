@@ -58,7 +58,7 @@ func spa(name string) {
 func multi(name string) {
 	fe := chooseFE()
 	if fe == "React" {
-		// Redux
+		Redux(name)	
 	} else {
 		Vuex(name)
 	}
